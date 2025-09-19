@@ -1,7 +1,7 @@
 
 #include "printBlockUtils.h"
 #include <stdio.h>
-#include "blocks.h"
+#include "../blocks.h"
 
 void PrintGrid(int grid[MAX_GRID_HEIGHT][MAX_GRID_WIDTH]) {
 

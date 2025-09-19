@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "blocks.h"
-#include "printBlockUtils.h"
+#include "utils/printBlockUtils.h"
 
 #define MAX_BLOCK_SIZE 10
 
