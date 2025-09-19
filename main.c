@@ -2,10 +2,8 @@
 #include "blocks.h"
 #include "utils/printBlockUtils.h"
 
-#define MAX_BLOCK_SIZE 10
-
 int main() {
-    //initialize grid as fully empty
+    //initialize grid
     int grid[MAX_GRID_HEIGHT][MAX_GRID_WIDTH] = {
         0
     };
