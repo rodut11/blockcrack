@@ -20,9 +20,27 @@ extern block large_Lshape_r90;
 extern block large_Lshape_r180;
 extern block large_Lshape_r270;
 
-// Line
+//small lshapes
+extern block small_Lshape_r0;
+extern block small_Lshape_r90;
+extern block small_Lshape_r180;
+extern block small_Lshape_r270;
+
+
+//lines
 extern block line_horizontal;
 extern block line_vertical;
+
+extern block medium_line_vertical;
+extern block medium_line_horizontal;
+
+extern block short_line_vertical;
+extern block short_line_horizontal;
+g
+extern block mini_line_horizontal;
+extern block mini_line_vertical;
+
+
 
 //squares
 extern block small_square;

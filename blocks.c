@@ -49,6 +49,51 @@ block large_Lshape_r270 = {
     }
 };
 
+block small_Lshape_r0 = {
+    .width = 2,
+    .height = 2,
+    .centerX = 1,
+    .centerY = 1,
+    .pattern = {
+        {1, 1},
+        {0, 1}
+    }
+};
+
+block small_Lshape_r90 = {
+    .width = 2,
+    .height = 2,
+    .centerX = 1,
+    .centerY = 1,
+    .pattern = {
+        {0, 1},
+        {1, 1}
+    }
+};
+
+block small_Lshape_r180 = {
+    .width = 2,
+    .height = 2,
+    .centerX = 1,
+    .centerY = 1,
+    .pattern = {
+        {0, 1},
+        {1, 1}
+    }
+};
+
+block small_Lshape_r270 = {
+    .width = 2,
+    .height = 2,
+    .centerX = 1,
+    .centerY = 1,
+    .pattern = {
+        {1, 1},
+        {1, 0}
+    }
+};
+
+
 //lines
 block line_horizontal = {
     .width = 5,
@@ -71,6 +116,72 @@ block line_vertical = {
         {1},
         {1},
         {1}
+    }
+};
+
+block medium_line_vertical = {
+    .width = 1,
+    .height = 4,
+    .centerX = 2,
+    .centerY = 0,
+    .pattern = {
+        {1},
+        {1},
+        {1},
+        {1}
+    }
+};
+
+block medium_line_horizontal = {
+    .width = 4,
+    .height = 1,
+    .centerX = 2,
+    .centerY = 0,
+    .pattern = {
+        {1, 1, 1, 1}
+    }
+};
+
+block short_line_vertical = {
+    .width = 1,
+    .height = 3,
+    .centerX = 2,
+    .centerY = 0,
+    .pattern = {
+        {1},
+        {1},
+        {1}
+    }
+};
+
+block short_line_horizontal = {
+    .width = 3,
+    .height = 1,
+    .centerX = 2,
+    .centerY = 0,
+    .pattern = {
+        {1, 1, 1}
+    }
+};
+
+block mini_line_vertical = {
+    .width = 1,
+    .height = 2,
+    .centerX = 2,
+    .centerY = 0,
+    .pattern = {
+        {1},
+        {1}
+    }
+};
+
+block mini_line_horizontal = {
+    .width = 2,
+    .height = 1,
+    .centerX = 2,
+    .centerY = 0,
+    .pattern = {
+        {1, 1}
     }
 };
 
