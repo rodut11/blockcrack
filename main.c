@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "blocks.h"
-#include "utils/printBlockUtils.h"
+#include "utils/util_print_block.h"
 
 #define MAX_BLOCK_SIZE 10
 
@@ -9,6 +9,6 @@ int main() {
     int grid[MAX_GRID_HEIGHT][MAX_GRID_WIDTH] = {
         0
     };
-    PrintGrid(grid);
-    PrintBlock(Zshape);
+    grid_print(grid);
+    block_print(Zshape);
 }

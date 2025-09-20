@@ -10,14 +10,14 @@ typedef struct {
     int centerX;
     int centerY;
     int pattern[4][4]; // max 4x4 for simplicity
-} Block;
+} block;
 
 // Declare the blocks as extern so other files can use them
-extern Block large_LShape;
-extern Block Line;
-extern Block Square;
-extern Block TShape;
-extern Block normal_Lshape;
-extern Block Zshape;
+extern block large_LShape;
+extern block Line;
+extern block Square;
+extern block TShape;
+extern block normal_Lshape;
+extern block Zshape;
 
 #endif // BLOCKS_H

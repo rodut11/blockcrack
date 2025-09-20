@@ -1,6 +1,6 @@
 #include "blocks.h"
 
-Block large_LShape = {
+block large_LShape = {
     .width = 3,
     .height = 3,
     .centerX = 1,
@@ -11,7 +11,7 @@ Block large_LShape = {
         {0, 0, 1}
     }
 };
-Block Line = {
+block Line = {
     .width = 4,
     .height = 1,
     .centerX = 1,
@@ -20,7 +20,7 @@ Block Line = {
         {1, 1, 1, 1}
     }
 };
-Block Square = {
+block Square = {
     .width = 2,
     .height = 2,
     .centerX = 0,
@@ -30,7 +30,7 @@ Block Square = {
         {1, 1}
     }
 };
-Block TShape = {
+block TShape = {
     .width = 3,
     .height = 2,
     .centerX = 1,
@@ -40,7 +40,7 @@ Block TShape = {
         {0, 1, 1}
     }
 };
-Block normal_Lshape = {
+block normal_Lshape = {
     .width = 2,
     .height = 3,
     .centerX = 1,
@@ -51,7 +51,7 @@ Block normal_Lshape = {
         {1,1}
     }
 };
-Block Zshape = {
+block Zshape = {
     .width = 3,
     .height = 2,
     .centerX = 1,
