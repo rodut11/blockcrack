@@ -18,6 +18,6 @@ void block_print(block block) {
         for(int j = 0; j < block.width; j++) {
             printf("%d ", block.pattern[i][j]);
         }
-        printf("\n"); // new line after each row
+        printf("\n");
     }
 }
