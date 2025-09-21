@@ -14,5 +14,4 @@ add_executable(C
         utils/debug/debug_print_blocks.c
         utils/debug/debug_blocks.h
         include/ANSI-Color-Codes.h
-        tests/test_blocks_func.c
-        tests/test_utils.c)
+        )

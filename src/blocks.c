@@ -200,8 +200,8 @@ block small_square = {
 block large_square = {
     .width = 3,
     .height = 3,
-    .centerX = 1,
-    .centerY = 1,
+    .centerX = 0,
+    .centerY = 0,
     .pattern = {
         {1, 1, 1},
         {1, 1, 1},

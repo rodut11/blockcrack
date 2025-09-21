@@ -66,6 +66,4 @@ extern block Zshape_r90;
 extern block Zshape_r180;
 extern block Zshape_r270;
 
-
-
 #endif // BLOCKS_H

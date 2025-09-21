@@ -1,12 +1,15 @@
 #include "util_blocks.h"
 #include <stdio.h>
 #include "../src/blocks.h"
+#include "../include/ANSI-Color-Codes.h"
 
 void grid_print(int grid[MAX_GRID_HEIGHT][MAX_GRID_WIDTH]) {
-
-    for(int i = 0; i < MAX_GRID_HEIGHT; i++) {
-        for(int j = 0; j < MAX_GRID_WIDTH; j++) {
-            printf("%d |", grid[i][j]); // print the value
+    for (int i = 0; i < MAX_GRID_HEIGHT; i++) {
+        for (int j = 0; j < MAX_GRID_WIDTH; j++) {
+            if (grid[i][j] == 1)
+                printf(BLU " %d " COLOR_RESET "|", grid[i][j]);
+            else
+                printf(" . |");
         }
         printf("\n"); // new line after each row
     }
