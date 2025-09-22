@@ -9,7 +9,8 @@ int main() {
 
     place_block(grid, large_square, 4, 1);
     place_block(grid, large_square, 2, 1);
-
+    grid_print(grid);
+    clear_grid(grid);
     grid_print(grid);
 
 }

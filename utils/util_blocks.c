@@ -20,6 +20,14 @@ void grid_print(int grid[MAX_GRID_HEIGHT][MAX_GRID_WIDTH]) {
     }
 }
 
+void clear_grid(int grid[8][8]) {
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+            grid[i][j] = 0;
+        }
+    }
+}
+
 void block_print(block block) {
     for(int i = 0; i < block.height; i++) {
         for(int j = 0; j < block.width; j++) {
