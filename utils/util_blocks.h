@@ -8,5 +8,6 @@ void block_print(block block);
 void place_block(int grid[8][8], block b, int pivotX, int pivotY);
 bool check_collision(int grid[8][8], block b, int pivotX, int pivotY);
 void clear_grid(int grid[8][8]);
+void check_full_row(int grid[8][8]);
 
 #endif //PRINTBLOCKUTILS_H
