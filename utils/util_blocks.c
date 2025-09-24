@@ -39,7 +39,6 @@ void block_print(block block) {
 
 void place_block(int grid[8][8], block b, int pivotX, int pivotY) {
 
-    printf("Pivot %d %d\n", pivotX, pivotY);
     if (!check_collision(grid, b, pivotX, pivotY))
         return; // abort if any collision
 
@@ -77,7 +76,15 @@ bool check_collision(int grid[8][8], block b, int pivotX, int pivotY) {
 }
 
 void check_full_row(int grid[8][8]) {
-    //-----------------------------------------------------
+    typedef struct {
+        int x;
+        int y;
+    } Coord;
+
+    Coord coord[64];
+    int clearCount = 0;
+
+    // check rows
     for (int yAxis = 0; yAxis < MAX_GRID_HEIGHT; yAxis++) {
         int xAxisLine = 0;
 
@@ -90,12 +97,14 @@ void check_full_row(int grid[8][8]) {
         if (xAxisLine == MAX_GRID_WIDTH) {
             printf("Row %d is full!\n", yAxis);
             for (int xAxis = 0; xAxis < MAX_GRID_WIDTH; xAxis++) {
-                grid[yAxis][xAxis] = 0;
+                coord[clearCount].x = xAxis;
+                coord[clearCount].y = yAxis;
+                clearCount++;
             }
         }
     }
 
-    //-----------------------------------------------------
+    // check columns
     for (int xAxis = 0; xAxis < MAX_GRID_WIDTH; xAxis++) {
         int yAxisLine = 0;
 
@@ -105,12 +114,18 @@ void check_full_row(int grid[8][8]) {
             }
         }
 
-        // check if the column is full
         if (yAxisLine == MAX_GRID_HEIGHT) {
             printf("Column %d is full!\n", xAxis);
             for (int yAxis = 0; yAxis < MAX_GRID_HEIGHT; yAxis++) {
-                grid[yAxis][xAxis] = 0;  // clear the column
+                coord[clearCount].x = xAxis;
+                coord[clearCount].y = yAxis;
+                clearCount++;
             }
         }
+    }
+
+    // now clear everything
+    for (int i = 0; i < clearCount; i++) {
+        grid[coord[i].y][coord[i].x] = 0;  // y first, then x
     }
 }
