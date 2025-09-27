@@ -59,7 +59,7 @@ The project is still in early stages, but the core idea is to automatically play
 - [x] Define basic blocks  
 - [x] Implement rotations  
 - [x] Grid + block placement  
-- [ ] Line clearing logic  
+- [x] Line clearing logic  
 - [ ] Automatic block selection & placement strategy  
 - [ ] Score calculation
 
