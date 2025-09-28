@@ -100,7 +100,7 @@ unsigned char* get_screencap(size_t* out_size) {
     return buffer;
 }
 
-void openApp(const char *inputapp) {
+void open_app(const char *inputapp) {
 
     if (app) free(app);
 

@@ -13,6 +13,6 @@ int main() {
     waydroid_connect("192.168.240.112:5555");
     size_t size;
     unsigned char* image = get_screencap(&size);
-    openApp("com.supercell.clashroyale/com.supercell.titan.GameApp");
+    open_app("com.supercell.clashroyale/com.supercell.titan.GameApp");
 
 }
