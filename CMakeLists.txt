@@ -14,8 +14,8 @@ add_executable(C
         utils/debug/debug_print_blocks.c
         utils/debug/debug.h
         include/ANSI-Color-Codes.h
-        utils/waydroid/waydroid_comm.c
-        utils/waydroid/waydroid_comm.h
+        utils/waydroid/C/waydroid_comm.c
+        utils/waydroid/C/waydroid_comm.h
         include/stb_image.h
 )
 
