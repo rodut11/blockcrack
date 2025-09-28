@@ -7,6 +7,7 @@
 
 // scarry null pointer!!!
 char *waydroid_host = NULL;
+char *app = NULL;
 
 void waydroid_connect(const char *host) {
     // free old one if it exists
@@ -97,4 +98,21 @@ unsigned char* get_screencap(size_t* out_size) {
     pclose(pipe);
     *out_size = bytes_read;
     return buffer;
+}
+
+void openApp(const char *inputapp) {
+
+    if (app) free(app);
+
+    app = malloc(strlen(inputapp) + 1);
+    if (!app) {
+        fprintf(stderr, "Memory allocation failed!\n");
+        exit(1);
+    }
+
+    char cmd[256];
+    strcpy(app, inputapp);
+
+    snprintf(cmd, sizeof(cmd), "adb shell am start -n %s", app);
+    system(cmd);
 }
