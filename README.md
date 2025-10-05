@@ -1,3 +1,5 @@
+![locs](https://img.shields.io/endpoint?url=https://ghloc.vercel.app/api/rodut11/Blockblast-solver/badge)
+
 # Block Blast Auto Player (C Project)
 
 This is a C project where I’m building a program to automatically play Block Blast, with the goal of getting really high scores.  
