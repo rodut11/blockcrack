@@ -29,13 +29,16 @@ void waydroid_connect(const char *host) {
 
     char cmd[256];
     snprintf(cmd, sizeof(cmd), "adb connect %s &", waydroid_host);
+    //printf("%s\n", waydroid_host);
     system(cmd);
 }
 
 
 void waydroid_disconnect() {
     printf("Disconnecting from waydroid\n");
-    system("adb disconnect &");
+    char cmd[256];
+    snprintf(cmd, sizeof(cmd), "adb disconnect %s", waydroid_host);
+    system(cmd);
 }
 
 unsigned char* get_screencap(size_t* out_size) {
@@ -122,7 +125,7 @@ void open_app(const char *input_app) {
 }
 
 void get_block() {
-    FILE *fp = popen("python3 ../utils/waydroid/python/get_block.py", "r");
+    FILE *fp = popen("python3 utils/waydroid/python/get_block.py", "r");
     if (!fp) {
         perror("popen");
         exit(1);
@@ -133,10 +136,8 @@ void get_block() {
     //     perror("fopen");
     //     exit(1);
     // }
-
-    char buf[192];
     int c;
-    size_t n;
+    //size_t n;
     size_t i = 0;
 
     //read first 6 bytes to get sizes
@@ -209,7 +210,7 @@ void get_block() {
 }
 
 void get_grid(int grid[8][8]) {
-    FILE *fp = popen("python3 ../utils/waydroid/python/get_grid.py", "r");
+    FILE *fp = popen("python3 utils/waydroid/python/get_grid.py", "r");
     if (!fp) {
         perror("popen");
         exit(1);
@@ -233,6 +234,64 @@ void get_grid(int grid[8][8]) {
             grid[row][col++] = byte;
         }
     }
+}
 
+int coords[3] = {0};
 
+void get_block_coord() {
+    FILE *fp = popen("python3 utils/waydroid/python/get_block_coord.py", "r");
+
+    if (!fp) {
+        perror("popen");
+        exit(1);
+    }
+
+    // FILE *out = fopen("out", "wb");
+    // if (!out) {
+    //     perror("fopen");
+    //     exit(1);
+    // }
+
+    /*Example output:
+     *
+     * 0x000000: 0x03 0x03 0x02 0xee 0xff 0x04 0x21 0x02 0xee 0xff ......!...
+     * 0x00000a: 0x03 0x9e 0x02 0xfa 0xff                          .....
+     */
+
+    //size_t n;
+    int c;
+
+    // char buff[256];
+    // while ((n = fread(buff, 1, sizeof(buff), fp)) > 0) {
+    //     fwrite(buff, 1, n, out);
+    // }
+
+    int coord_index = 0;
+    unsigned char bytes[5];
+    int count = 0;
+
+    while ((c = fgetc(fp)) != EOF) { // read bytes
+        bytes[count++] = (unsigned char)c;
+        if (count == 5) { // once 5 bytes collected
+        // 0-1 = X (big endian)
+        // 2-3 = Y (big endian)
+        // 4 = marker (0xFF)
+            if (bytes[4] != 0xFF) {
+                fprintf(stderr, "Marker missing");
+                exit(1);
+            }
+
+            // combine X and Y into 16-bit ints
+            // because the data is big endian, shift the first byte left by 8 and OR it with the second one
+            int x = (bytes[0] << 8) | bytes[1];
+            int y = (bytes[2] << 8) | bytes[3];
+
+            // store coords in array
+            coords[coord_index++] = x;
+            coords[coord_index++] = y;
+
+            // reset counter for next pair
+            count = 0;
+        }
+    }
 }

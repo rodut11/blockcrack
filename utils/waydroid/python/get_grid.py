@@ -2,9 +2,17 @@ import ctypes
 import numpy as np
 import cv2
 import sys
+import os
+import ctypes
+
+# Get the folder where this script lives
+script_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Build path relative to this folder
+lib_path = os.path.join(script_dir, '..', 'build', 'libwaydroid.so')
 
 # --- Load screencap ---
-lib = ctypes.CDLL('../utils/waydroid/build/libwaydroid.so')
+lib = ctypes.CDLL(lib_path)
 lib.get_screencap.argtypes = [ctypes.POINTER(ctypes.c_size_t)]
 lib.get_screencap.restype = ctypes.POINTER(ctypes.c_ubyte)
 

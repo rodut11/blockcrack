@@ -10,5 +10,6 @@ void waydroid_connect(const char *host);
 unsigned char* get_screencap(size_t* out_size);
 void open_app(const char *input_app);
 void get_grid(int grid[8][8]);
+void get_block_coord();
 
 #endif //C_WAYDROID_COMM_H
