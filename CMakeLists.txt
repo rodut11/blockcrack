@@ -10,15 +10,15 @@ include_directories(..)
 
 add_executable(C
         src/main.c
-        src/blocks.h
+        include/blocks.h
         src/blocks.c
-        utils/util_blocks.h
+        include/util_blocks.h
         utils/util_blocks.c
         utils/debug/debug_print_blocks.c
         utils/debug/debug.h
         include/ANSI-Color-Codes.h
         utils/waydroid/C/waydroid_comm.c
-        utils/waydroid/C/waydroid_comm.h
+        include/waydroid/waydroid_comm.h
         utils/waydroid/vision/get_grid_origin.cpp
         utils/waydroid/vision/get_grid_origin.h
 )

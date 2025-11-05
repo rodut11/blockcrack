@@ -1,8 +1,8 @@
 #include <stdio.h>
-#include "blocks.h"
+#include "../include/blocks.h"
 #include <string.h>
-#include "../utils/util_blocks.h"
-#include "../utils/waydroid/C/waydroid_comm.h"
+#include "../include/util_blocks.h"
+#include "../include/waydroid/waydroid_comm.h"
 
 #include <stdlib.h>
 #include "../utils/debug/debug.h"

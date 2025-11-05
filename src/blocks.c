@@ -1,4 +1,4 @@
-#include "blocks.h"
+#include "../include/blocks.h"
 
 //Lshape
 block large_Lshape_r0 = {

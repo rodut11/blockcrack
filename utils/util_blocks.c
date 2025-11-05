@@ -1,7 +1,7 @@
-#include "util_blocks.h"
+#include "../include/util_blocks.h"
 #include <stdio.h>
 #include <stdbool.h>
-#include "../src/blocks.h"
+#include "../include/blocks.h"
 #include "../include/ANSI-Color-Codes.h"
 
 void grid_print(int grid[MAX_GRID_HEIGHT][MAX_GRID_WIDTH]) {

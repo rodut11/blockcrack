@@ -3,7 +3,7 @@
 #include <string.h>
 //#define STB_IMAGE_IMPLEMENTATION
 
-#include "../../../src/blocks.h"
+#include "../../../include/blocks.h"
 
 // scarry null pointer!!!
 char *waydroid_host = NULL;
@@ -244,5 +244,5 @@ void get_block_coord() {
         // printf("Block %d: X=%d, Y=%d\n", i / 2, blocks[i].x, blocks[i].y);
         // printf("-----------------------------------\n");
     }
-
+`
 }
