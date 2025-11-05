@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
 //#define STB_IMAGE_IMPLEMENTATION
 
 #include "../../../src/blocks.h"
@@ -41,71 +40,6 @@ void waydroid_disconnect() {
     system(cmd);
 }
 
-unsigned char* get_screencap(size_t* out_size) {
-    const size_t chunk_size = 4096;  // read in 4KB chunks
-    size_t capacity = chunk_size;
-    size_t bytes_read = 0;
-
-    // get image
-    FILE* pipe = popen("adb exec-out screencap -p", "r");
-    if (!pipe) {
-        perror("popen");
-        exit(1);
-    }
-
-    // check for error
-    unsigned char* buffer = malloc(capacity);
-    if (!buffer) {
-        perror("malloc");
-        pclose(pipe);
-        exit(1);
-    }
-
-    // infinite loop
-    while (1) {
-
-        // if the capacity is smaller than the already read bytes and the size of the chunk, double the capacity
-        if (bytes_read + chunk_size > capacity) {
-            capacity *= 2;
-
-            // create temp memory and realloc
-            unsigned char* tmp = realloc(buffer, capacity);
-
-            //check for error
-            if (!tmp) {
-                perror("realloc");
-                free(buffer);
-                pclose(pipe);
-                exit(1);
-            }
-
-            //write what's in the temp memory to the buffer
-            buffer = tmp;
-        }
-
-        // write to the buffer the bytes read
-        size_t n = fread(buffer + bytes_read, 1, chunk_size, pipe);
-
-
-        // if fread() returns 0 (reached the end of stream)
-        if (n == 0) {
-            if (feof(pipe)) break;  // end of stream
-
-            // check for error
-            if (ferror(pipe)) {
-                perror("fread");
-                free(buffer);
-                pclose(pipe);
-                exit(1);
-            }
-        }
-        bytes_read += n;
-    }
-
-    pclose(pipe);
-    *out_size = bytes_read;
-    return buffer;
-}
 
 void open_app(const char *input_app) {
 
@@ -125,7 +59,7 @@ void open_app(const char *input_app) {
 }
 
 void get_block() {
-    FILE *fp = popen("python3 utils/waydroid/python/get_block.py", "r");
+    FILE *fp = popen("python3 utils/waydroid/vision/get_block.py", "r");
     if (!fp) {
         perror("popen");
         exit(1);
@@ -150,13 +84,13 @@ void get_block() {
 
         sizes[i++] = (unsigned char)c;
 
-        if (i > 6) {
+        if (i >= 6) {
             fprintf(stderr, "Unexpected more than 6 header bytes!\n");
             break;
         }
     }
 
-    int num_blocks = (int)i / 2;  // i is number of bytes read from header
+    int num_blocks = (int)i / 2;  // int i is number of bytes read from header
     if (num_blocks > 3) num_blocks = 3; // in case your array only supports 3 blocks
 
     // // print sizes
@@ -210,7 +144,7 @@ void get_block() {
 }
 
 void get_grid(int grid[8][8]) {
-    FILE *fp = popen("python3 utils/waydroid/python/get_grid.py", "r");
+    FILE *fp = popen("python3 utils/waydroid/vision/get_grid.py", "r");
     if (!fp) {
         perror("popen");
         exit(1);
@@ -220,6 +154,13 @@ void get_grid(int grid[8][8]) {
     // if (!out) {
     //     perror("fopen");
     //     exit(1);
+    // }
+    //
+    // size_t n;
+    //
+    // char buff[256];
+    // while ((n = fread(buff, 1, sizeof(buff), fp)) > 0) {
+    //     fwrite(buff, 1, n, out);
     // }
 
     int c;
@@ -239,7 +180,7 @@ void get_grid(int grid[8][8]) {
 int coords[3] = {0};
 
 void get_block_coord() {
-    FILE *fp = popen("python3 utils/waydroid/python/get_block_coord.py", "r");
+    FILE *fp = popen("python3 utils/waydroid/vision/get_block_coord.py", "r");
 
     if (!fp) {
         perror("popen");
@@ -294,4 +235,14 @@ void get_block_coord() {
             count = 0;
         }
     }
+    for (int i = 0; i < coord_index; i += 2) {
+        int x = coords[i];
+        int y = coords[i + 1];
+
+        blocks[i/2].sx = x;
+        blocks[i/2].sy = y;
+        // printf("Block %d: X=%d, Y=%d\n", i / 2, blocks[i].x, blocks[i].y);
+        // printf("-----------------------------------\n");
+    }
+
 }

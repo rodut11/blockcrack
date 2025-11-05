@@ -17,6 +17,8 @@ typedef struct {
     int row;
     int col;
     int pattern[MAX_BLOCK_SIZE][MAX_BLOCK_SIZE];
+    int sx;
+    int sy;
 } undefined_block;
 
 
