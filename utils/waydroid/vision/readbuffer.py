@@ -3,7 +3,7 @@ import numpy as np
 import cv2
 
 # load shared library
-lib = ctypes.CDLL('utils/waydroid/build/libwaydroid.so')  # replace with your shared library path
+lib = ctypes.CDLL('utils/waydroid/build/get_screencap.so')  # replace with your shared library path
 
 # tell python the function signature
 lib.get_screencap.argtypes = [ctypes.POINTER(ctypes.c_size_t)]
