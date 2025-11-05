@@ -244,5 +244,5 @@ void get_block_coord() {
         // printf("Block %d: X=%d, Y=%d\n", i / 2, blocks[i].x, blocks[i].y);
         // printf("-----------------------------------\n");
     }
-`
+
 }
