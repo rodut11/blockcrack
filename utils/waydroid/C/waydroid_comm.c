@@ -143,39 +143,39 @@ void get_block() {
 
 }
 
-void get_grid(int grid[8][8]) {
-    FILE *fp = popen("python3 utils/waydroid/vision/get_grid.py", "r");
-    if (!fp) {
-        perror("popen");
-        exit(1);
-    }
-
-    // FILE *out = fopen("out", "wb");
-    // if (!out) {
-    //     perror("fopen");
-    //     exit(1);
-    // }
-    //
-    // size_t n;
-    //
-    // char buff[256];
-    // while ((n = fread(buff, 1, sizeof(buff), fp)) > 0) {
-    //     fwrite(buff, 1, n, out);
-    // }
-
-    int c;
-
-    int row = 0, col = 0;
-    while ((c = fgetc(fp)) != EOF) {
-        unsigned char byte = (unsigned char)c;
-        if (byte == 0xFE) { //EOR - End Of Row
-            row++; // go down one row and go at the start
-            col = 0;
-        }else {
-            grid[row][col++] = byte;
-        }
-    }
-}
+// void get_grid(int grid[8][8]) {
+//     FILE *fp = popen("python3 utils/waydroid/vision/get_grid.py", "r");
+//     if (!fp) {
+//         perror("popen");
+//         exit(1);
+//     }
+//
+//     // FILE *out = fopen("out", "wb");
+//     // if (!out) {
+//     //     perror("fopen");
+//     //     exit(1);
+//     // }
+//     //
+//     // size_t n;
+//     //
+//     // char buff[256];
+//     // while ((n = fread(buff, 1, sizeof(buff), fp)) > 0) {
+//     //     fwrite(buff, 1, n, out);
+//     // }
+//
+//     int c;
+//
+//     int row = 0, col = 0;
+//     while ((c = fgetc(fp)) != EOF) {
+//         unsigned char byte = (unsigned char)c;
+//         if (byte == 0xFE) { //EOR - End Of Row
+//             row++; // go down one row and go at the start
+//             col = 0;
+//         }else {
+//             grid[row][col++] = byte;
+//         }
+//     }
+// }
 
 int coords[3] = {0};
 
@@ -241,8 +241,8 @@ void get_block_coord() {
 
         blocks[i/2].sx = x;
         blocks[i/2].sy = y;
-        // printf("Block %d: X=%d, Y=%d\n", i / 2, blocks[i].x, blocks[i].y);
-        // printf("-----------------------------------\n");
+        printf("Block %d: X=%d, Y=%d\n", i / 2, blocks[i / 2].sx, blocks[i / 2].sy);
+        printf("-----------------------------------\n");
     }
 
 }

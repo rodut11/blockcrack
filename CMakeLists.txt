@@ -20,7 +20,10 @@ add_executable(C
         utils/waydroid/C/waydroid_comm.c
         include/waydroid/waydroid_comm.h
         utils/waydroid/vision/get_grid_origin.cpp
-        utils/waydroid/vision/get_grid_origin.h
+        utils/waydroid/vision/get_grid.cpp
+        utils/waydroid/vision/internal_vision.cpp
+        utils/waydroid/vision/vision.h
+        utils/waydroid/vision/internal_vision.hpp
 )
 
 find_package(OpenCV REQUIRED)

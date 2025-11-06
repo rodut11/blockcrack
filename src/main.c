@@ -6,9 +6,7 @@
 
 #include <stdlib.h>
 #include "../utils/debug/debug.h"
-
-
-void get_grid_origin(int* x, int* y);
+#include "../utils/waydroid/vision/vision.h"
 
 int main() {
     int grid[MAX_GRID_HEIGHT][MAX_GRID_WIDTH] = {0};
@@ -17,7 +15,9 @@ int main() {
     // size_t size;
     // unsigned char* image = get_screencap(&size);
 
+
     get_grid(grid);
+    get_block_coord();
     grid_print(grid);
 
     int x, y;
