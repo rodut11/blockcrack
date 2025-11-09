@@ -8,7 +8,7 @@ extern "C" {
     // C-callable function
     void get_grid_origin(int* x, int* y);
     void get_grid(int grid[8][8]);
-
+    void get_block();
 
 #ifdef __cplusplus
 }

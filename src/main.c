@@ -19,6 +19,7 @@ int main() {
     get_grid(grid);
     get_block_coord();
     grid_print(grid);
+    get_block();
 
     int x, y;
     get_grid_origin(&x, &y);
