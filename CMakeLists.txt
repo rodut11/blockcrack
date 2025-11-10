@@ -24,6 +24,7 @@ add_executable(C
         utils/waydroid/vision/internal_vision.cpp
         utils/waydroid/vision/vision.h
         utils/waydroid/vision/internal_vision.hpp
+        utils/waydroid/vision/get_block.cpp
 )
 
 find_package(OpenCV REQUIRED)
