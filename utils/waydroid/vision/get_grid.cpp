@@ -28,7 +28,7 @@ extern "C" void get_grid(int grid[8][8]) {
 
         int gwidth = bottomRight.x - topLeft.x;
         int gheight = bottomRight.y - topLeft.y;
-        std::cout << "Width: " << gwidth << " Height: " << gheight << std::endl;
+        //std::cout << "Width: " << gwidth << " Height: " << gheight << std::endl;
         cv::Rect roi(topLeft.x, topLeft.y, gwidth, gheight);
 
         cv::Mat region = img(roi);
@@ -36,8 +36,6 @@ extern "C" void get_grid(int grid[8][8]) {
         // calculate in-game cell dimensions
         cell_height = gheight / 8;
         cell_width = gwidth / 8;
-
-
 
         for (int r = 0; r < 8; r++) {
             for (int c = 0; c < 8; c++) {
