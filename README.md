@@ -85,7 +85,7 @@ You can follow the progress on my **[blog](https://blog.rodut11.dev)**
 
 ## License
 
-This project will be licensed under GPLv3 (FOSS friendly).
+This project is be licensed under GPLv3.
 
 ---
 
