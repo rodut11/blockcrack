@@ -2,7 +2,7 @@
 #include <opencv2/imgcodecs.hpp>
 
 cv::Mat decode_screencap(const std::vector<unsigned char>& buffer) {
-    cv::Mat img = cv::imdecode(buffer, cv::IMREAD_COLOR);
+    cv::Mat img = cv::imdecode(buffer, cv::IMREAD_GRAYSCALE);
 
     // check if image is empty
     if (img.empty()) {

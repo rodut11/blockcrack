@@ -1,7 +1,6 @@
 #include <iostream>
 #include <opencv2/imgproc.hpp>
 #include "internal_vision.hpp"
-#include "blockcrack/include/util_blocks.h"
 
 extern "C" void get_grid(int grid[8][8]) {
     // virtual grid
@@ -14,10 +13,10 @@ extern "C" void get_grid(int grid[8][8]) {
     if (!img.empty()) {
 
         // coordinates (top-left and bottom-right)
-        int gx1 = 715;
-        int gy1 = 206;
-        int gx2 = 1163;
-        int gy2 = 654;
+        int gx1 = 718;
+        int gy1 = 209;
+        int gx2 = 1202;
+        int gy2 = 693;
 
         int cell_height = 0;
         int cell_width = 0;
@@ -48,7 +47,7 @@ extern "C" void get_grid(int grid[8][8]) {
                 cv::Mat cell = region(cell_rect);
 
                 // convert to grayscale
-                cv::cvtColor(cell, cell, cv::COLOR_BGR2GRAY);
+                // cv::cvtColor(cell, cell, cv::COLOR_BGR2GRAY);
                 cv::threshold(cell, cell, 128, 255, cv::THRESH_BINARY_INV);
 
                 // if the fill ration is bigger than .5 set cell in the grid to 1, if not set it to 0,

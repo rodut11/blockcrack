@@ -25,6 +25,7 @@ add_executable(C
         utils/waydroid/vision/vision.h
         utils/waydroid/vision/internal_vision.hpp
         utils/waydroid/vision/get_block.cpp
+        assets/mask_sample.h
 )
 
 find_package(OpenCV REQUIRED)
