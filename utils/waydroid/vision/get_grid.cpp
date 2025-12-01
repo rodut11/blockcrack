@@ -7,7 +7,7 @@ extern "C" void get_grid(int grid[8][8]) {
     int vgrid[8][8] = {0};
 
     // get and decode the screen capture
-    auto buffer = grab_screencap();
+    std::vector<u_char> buffer = grab_screencap();
     cv::Mat img = decode_screencap(buffer);
 
     if (!img.empty()) {
@@ -48,7 +48,7 @@ extern "C" void get_grid(int grid[8][8]) {
 
                 // convert to grayscale
                 // cv::cvtColor(cell, cell, cv::COLOR_BGR2GRAY);
-                cv::threshold(cell, cell, 128, 255, cv::THRESH_BINARY_INV);
+                cv::threshold(cell, cell, 100, 255, cv::THRESH_BINARY_INV);
 
                 // if the fill ration is bigger than .5 set cell in the grid to 1, if not set it to 0,
                 // pretty self-explanatory

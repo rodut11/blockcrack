@@ -171,63 +171,61 @@ void open_app(const char *input_app) {
 //     }
 // }
 
-int coords[3] = {0};
-
-void get_block_coord() {
-    FILE *fp = popen("python3 utils/waydroid/vision/get_block_coord.py", "r");
-
-    if (!fp) {
-        perror("popen");
-        exit(1);
-    }
-
-    // FILE *out = fopen("out", "wb");
-    // if (!out) {
-    //     perror("fopen");
-    //     exit(1);
-    // }
-
-    /*Example output:
-     *
-     * 0x000000: 0x03 0x03 0x02 0xee 0xff 0x04 0x21 0x02 0xee 0xff ......!...
-     * 0x00000a: 0x03 0x9e 0x02 0xfa 0xff                          .....
-     */
-
-    //size_t n;
-    int c;
-
-    // char buff[256];
-    // while ((n = fread(buff, 1, sizeof(buff), fp)) > 0) {
-    //     fwrite(buff, 1, n, out);
-    // }
-
-    int coord_index = 0;
-    unsigned char bytes[5];
-    int count = 0;
-
-    while ((c = fgetc(fp)) != EOF) { // read bytes
-        bytes[count++] = (unsigned char)c;
-        if (count == 5) { // once 5 bytes collected
-        // 0-1 = X (big endian)
-        // 2-3 = Y (big endian)
-        // 4 = marker (0xFF)
-            if (bytes[4] != 0xFF) {
-                fprintf(stderr, "Marker missing");
-                exit(1);
-            }
-
-            // combine X and Y into 16-bit ints
-            // because the data is big endian, shift the first byte left by 8 and OR it with the second one
-            int x = (bytes[0] << 8) | bytes[1];
-            int y = (bytes[2] << 8) | bytes[3];
-
-            // store coords in array
-            coords[coord_index++] = x;
-            coords[coord_index++] = y;
-
-            // reset counter for next pair
-            count = 0;
-        }
-    }
-
-}
+// int coords[3] = {0};
+//
+// void get_block_coord() {
+//     FILE *fp = popen("python3 utils/waydroid/vision/get_block_coord.py", "r");
+//
+//     if (!fp) {
+//         perror("popen");
+//         exit(1);
+//     }
+//
+//     // FILE *out = fopen("out", "wb");
+//     // if (!out) {
+//     //     perror("fopen");
+//     //     exit(1);
+//     // }
+//
+//     /*Example output:
+//      *
+//      * 0x000000: 0x03 0x03 0x02 0xee 0xff 0x04 0x21 0x02 0xee 0xff ......!...
+//      * 0x00000a: 0x03 0x9e 0x02 0xfa 0xff                          .....
+//      */
+//
+//     //size_t n;
+//     int c;
+//
+//     // char buff[256];
+//     // while ((n = fread(buff, 1, sizeof(buff), fp)) > 0) {
+//     //     fwrite(buff, 1, n, out);
+//     // }
+//
+//     int coord_index = 0;
+//     unsigned char bytes[5];
+//     int count = 0;
+//
+//     while ((c = fgetc(fp)) != EOF) { // read bytes
+//         bytes[count++] = (unsigned char)c;
+//         if (count == 5) { // once 5 bytes collected
+//         // 0-1 = X (big endian)
+//         // 2-3 = Y (big endian)
+//         // 4 = marker (0xFF)
+//             if (bytes[4] != 0xFF) {
+//                 fprintf(stderr, "Marker missing");
+//                 exit(1);
+//             }
+//
+//             // combine X and Y into 16-bit ints
+//             // because the data is big endian, shift the first byte left by 8 and OR it with the second one
+//             int x = (bytes[0] << 8) | bytes[1];
+//             int y = (bytes[2] << 8) | bytes[3];
+//
+//             // store coords in array
+//             coords[coord_index++] = x;
+//             coords[coord_index++] = y;
+//
+//             // reset counter for next pair
+//             count = 0;
+//         }
+//     }

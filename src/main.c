@@ -15,9 +15,10 @@ int main() {
     // size_t size;
     // unsigned char* image = get_screencap(&size);
 
+    point_t centers[3];
 
     get_grid(grid);
-    get_block_coord();
+    get_block_coord(centers);
     grid_print(grid);
     get_block();
 

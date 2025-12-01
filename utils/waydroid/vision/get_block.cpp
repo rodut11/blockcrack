@@ -8,11 +8,8 @@
 
 //include sample image as bytes (converted using xxd -i)
 #include "../../../assets/sample.h"
-#include "../../../assets/mask_sample.h"
-
 
 #define THRESH 0.8
-#define THRESH2 0.878
 
 typedef struct {
     int x1, y1, x2, y2;
@@ -22,7 +19,7 @@ cv::Mat remove_small_components(const cv::Mat& mask, int min_area);
 std::array<bounding_box, 3> get_bounding_box(const cv::Mat& img, const cv::Mat& templ);
 
 extern "C" void get_block() {
-    auto buffer = grab_screencap();
+    std::vector<u_char> buffer = grab_screencap();
     cv::Mat img = decode_screencap(buffer);
 
     if (!img.empty()) {
@@ -53,9 +50,6 @@ extern "C" void get_block() {
         cv::Mat cell_template = cv::imdecode(sample_png_raw, cv::IMREAD_GRAYSCALE);
         //cv::threshold(cell_template, cell_template, 128, 255, cv::THRESH_BINARY_INV);
 
-        //load mask sample image
-        cv::Mat mask_sample_png_raw(1, (int)mask_sample_png_len, CV_8UC1, (void*)mask_sample_png);
-        cv::Mat mask_cell_template = cv::imdecode(mask_sample_png_raw, cv::IMREAD_GRAYSCALE);
 
         if (cell_template.empty()) {
             std::cerr << "Failed to decode image" << std::endl;
@@ -66,17 +60,17 @@ extern "C" void get_block() {
         std::array<bounding_box,3> bounding_boxes = get_bounding_box(region, cell_template);
 
         for (int i = 0; i < 3; i++) {
-
             // read coordinate, temporary
-            std::cout << bounding_boxes[i].x1 << std::endl;
-            std::cout << bounding_boxes[i].y1 << std::endl;
-            std::cout << bounding_boxes[i].x2 << std::endl;
-            std::cout << bounding_boxes[i].y2 << std::endl;
+            // std::cout << bounding_boxes[i].x1 << std::endl;
+            // std::cout << bounding_boxes[i].y1 << std::endl;
+            // std::cout << bounding_boxes[i].x2 << std::endl;
+            // std::cout << bounding_boxes[i].y2 << std::endl;
+            // std::cout << "------------------" << std::endl;
 
             // get region on interest
             cv::Rect box_roi(
-                bounding_boxes[i].x1 + gx1,  // offset by region top-left x
-                bounding_boxes[i].y1 + gy1,  // offset by region top-left y
+                bounding_boxes[i].x1 + gx1, // offset by region top-left x
+                bounding_boxes[i].y1 + gy1, // offset by region top-left y
                 bounding_boxes[i].x2 - bounding_boxes[i].x1,
                 bounding_boxes[i].y2 - bounding_boxes[i].y1
             );
@@ -84,12 +78,9 @@ extern "C" void get_block() {
             // crop to region
             cv::Mat box_region = img(box_roi);
 
-            // convert to mask
-            cv::threshold(box_region, box_region, 180, 255, cv::THRESH_BINARY_INV);
-
             // match template
             cv::Mat result;
-            cv::matchTemplate(box_region, mask_cell_template, result, cv::TM_CCOEFF_NORMED);
+            cv::matchTemplate(box_region, cell_template, result, cv::TM_CCOEFF_NORMED);
 
             // convert output image (temporary) to grayscale
             cv::Mat display;
@@ -101,24 +92,21 @@ extern "C" void get_block() {
                 double minVal, maxVal;
                 cv::Point minLoc, maxLoc;
                 cv::minMaxLoc(result, &minVal, &maxVal, &minLoc, &maxLoc);
-                std::cout << minVal << ", " << maxVal << std::endl;
 
-                if (maxVal < THRESH2) break;
+                if (maxVal < THRESH) break;
 
-
-                cv::Rect rect(maxLoc.x, maxLoc.y, mask_cell_template.cols, mask_cell_template.rows);
+                cv::Rect rect(maxLoc.x, maxLoc.y, cell_template.cols, cell_template.rows);
 
                 // fill already detected pixel so it's not detected again and not fall in a loop
                 cv::rectangle(box_region, rect, cv::Scalar(255), cv::FILLED);
                 cv::floodFill(result, maxLoc, cv::Scalar(-1));
 
                 // write on display
-                cv::rectangle(display, rect, cv::Scalar(255), cv::LINE_4);
+                //cv::rectangle(display, rect, cv::Scalar(255), cv::FILLED);
             }
 
-            cv::imshow("block", display);
-            cv::waitKey(0);
-
+            // cv::imshow("block", display);
+            // cv::waitKey(0);
         }
 
     }

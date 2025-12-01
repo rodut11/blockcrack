@@ -3,8 +3,7 @@
 
 extern "C" void get_grid_origin(int* x, int* y) {
 
-    auto buffer = grab_screencap();
-
+    std::vector<u_char> buffer = grab_screencap();
     cv::Mat img = decode_screencap(buffer);
 
     if (!img.empty()) {

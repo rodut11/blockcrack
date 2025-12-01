@@ -25,7 +25,10 @@ add_executable(C
         utils/waydroid/vision/vision.h
         utils/waydroid/vision/internal_vision.hpp
         utils/waydroid/vision/get_block.cpp
-        assets/mask_sample.h
+        utils/waydroid/vision/get_block_coord.cpp
+        utils/waydroid/vision/get_block_coord.cpp
+        utils/waydroid/vision/get_bounding_box.hpp
+        assets/sample.cpp
 )
 
 find_package(OpenCV REQUIRED)
