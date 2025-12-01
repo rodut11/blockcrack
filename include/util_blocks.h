@@ -1,5 +1,5 @@
-#ifndef PRINTBLOCKUTILS_H
-#define PRINTBLOCKUTILS_H
+#ifndef UTIL_BLOCKS_H
+#define UTIL_BLOCKS_H
 #include "blocks.h"
 #include <stdbool.h>
 
@@ -13,4 +13,4 @@ void clear_grid(int grid[8][8]);
 void check_full_row(int grid[8][8]);
 void get_block();
 
-#endif //PRINTBLOCKUTILS_H
+#endif //UTIL_BLOCKS_H
