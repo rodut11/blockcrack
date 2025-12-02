@@ -1,23 +1,29 @@
 #include <stdio.h>
-#include "blocks.h"
-#include "../utils/util_blocks.h"
-#include "../utils/debug/debug_blocks.h"
+#include "../include/blocks.h"
+#include <string.h>
+#include "../include/util_blocks.h"
+#include "../include/waydroid/waydroid_comm.h"
 
-
+#include <stdlib.h>
+#include "../utils/debug/debug.h"
+#include "../utils/waydroid/vision/vision.h"
 
 int main() {
     int grid[MAX_GRID_HEIGHT][MAX_GRID_WIDTH] = {0};
 
-    int points = 0;
+    waydroid_connect("192.168.240.112:5555");
+    // size_t size;
+    // unsigned char* image = get_screencap(&size);
 
-    place_block(grid, large_square, 0, 0);
-    place_block(grid, large_square, 0, 3);
-    place_block(grid, rectangle_horizontal, 0, 6);
-    place_block(grid, large_square, 3, 0);
-    place_block(grid, rectangle_vertical, 6, 0);
+    get_grid(grid);
+    get_block_coord();
+    grid_print(grid);
+    get_block();
 
-    printf("\n");
-    grid_print(grid);
-    check_full_row(grid);
-    grid_print(grid);
+    int x, y;
+    get_grid_origin(&x, &y);
+    printf("Grid origin: %d,%d\n", x, y);
+
+    // free(image);
+    return 0;
 }

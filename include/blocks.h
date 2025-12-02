@@ -13,6 +13,15 @@ typedef struct {
     int pattern[MAX_BLOCK_SIZE][MAX_BLOCK_SIZE]; // max 4x4 for simplicity
 } block;
 
+typedef struct {
+    int row;
+    int col;
+    int pattern[MAX_BLOCK_SIZE][MAX_BLOCK_SIZE];
+    int sx;
+    int sy;
+} undefined_block;
+
+
 // declare the blocks as extern so other files can use them
 // large lshapes
 extern block large_Lshape_r0;
@@ -55,10 +64,10 @@ extern block Tshape_r180;
 extern block Tshape_r270;
 
 // normal L-shape
-extern block normal_Lshape_r0;
-extern block normal_Lshape_r90;
+extern block normal_Lshape_vertical_1;
+extern block normal_Lshape_down_1;
 extern block normal_Lshape_r180;
-extern block normal_Lshape_r270;
+extern block normal_Lshape_up_1;
 
 // Z and S shapes
 extern block Zshape_r0;

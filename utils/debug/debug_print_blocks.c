@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include "../util_blocks.h"
-#include "../../src/blocks.h"
-
+#include "../../include/util_blocks.h"
+#include "../../include/blocks.h"
+/*
 void list_blocks() {
 
     block blocks[] = {
@@ -29,10 +29,10 @@ void list_blocks() {
         Tshape_r90,
         Tshape_r180,
         Tshape_r270,
-        normal_Lshape_r0,
-        normal_Lshape_r90,
+        normal_Lshape_vertical_1,
+        normal_Lshape_down_1,
         normal_Lshape_r180,
-        normal_Lshape_r270,
+        normal_Lshape_up_1,
         Zshape_r0,
         Zshape_r90,
         Zshape_r180,
@@ -44,4 +44,4 @@ void list_blocks() {
         block_print(blocks[i]);
     }
 
-}
+}*/

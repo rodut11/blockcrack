@@ -1,17 +1,36 @@
 cmake_minimum_required(VERSION 4.0)
-project(C C)
+project(C C CXX)
 
 set(CMAKE_C_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 
 include_directories(..)
 
 add_executable(C
         src/main.c
-        src/blocks.h
+        include/blocks.h
         src/blocks.c
-        utils/util_blocks.h
+        include/util_blocks.h
         utils/util_blocks.c
         utils/debug/debug_print_blocks.c
-        utils/debug/debug_blocks.h
+        utils/debug/debug.h
         include/ANSI-Color-Codes.h
-        )
+        utils/waydroid/C/waydroid_comm.c
+        include/waydroid/waydroid_comm.h
+        utils/waydroid/vision/get_grid_origin.cpp
+        utils/waydroid/vision/get_grid.cpp
+        utils/waydroid/vision/internal_vision.cpp
+        utils/waydroid/vision/vision.h
+        utils/waydroid/vision/internal_vision.hpp
+        utils/waydroid/vision/get_block.cpp
+        utils/waydroid/vision/get_block_coord.cpp
+        utils/waydroid/vision/get_block_coord.cpp
+        utils/waydroid/vision/get_bounding_box.hpp
+        assets/sample.cpp
+)
+
+find_package(OpenCV REQUIRED)
+include_directories(${OpenCV_INCLUDE_DIRS})
+target_link_libraries(C PRIVATE ${OpenCV_LIBS})
