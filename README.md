@@ -76,7 +76,7 @@ Planned: add unit tests (probably with a simple test runner in C).
 
 ## Dev Logs
 
-You can follow the progress on my **[blog](https://blog.rodut11.dev)**
+You can follow the progress on my **[blog](https://rodut11.dev)**
 
 - **Day 1** → Set up environment, created Block struct, basic grid & printing  
 - **Day 2** → Added rotations, wrote `place_block()` logic, debug utilities  
